@@ -3,8 +3,10 @@
 
 read -rp "Enter a mathematical expression: " expression
 
-result=$(bc <<< "$expression")
+# result=$(bc <<< "$expression")
 
-res=$(printf "%.2f\n" "$result")
+result=$(echo "scale=10; $expression" | bc -l)
+
+res=$(printf "%.3f" $result)
 
 echo "$res"
